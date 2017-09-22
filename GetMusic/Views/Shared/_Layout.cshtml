@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - Tower66 Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,7 +25,21 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Artists", "Index", "Artists")</li>
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
-                </ul>
+                    </ul>
+                <div align="right" style="width:auto">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <strong>@Html.Encode(User.Identity.Name)</strong>
+                                @Html.ActionLink("Log Out", "Logout", "Users")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Register", "Register", "Users")
+                        <span> | </span>
+                                @Html.ActionLink("Log In", "Login", "Users")
+                    }
+                </div>
+
             </div>
         </div>
     </div>
